@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Inter:wght@350;400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="shots.css" />
 </head>
 <body>
 <main class="page">
@@ -120,6 +121,16 @@
                 <p class="project-stack">C# · .NET 8 · WPF · MVVM</p>
                 <p class="project-body">A Windows desktop application that supports Siemens Spectrum Power SCADA configuration workflows: ICCP configuration with XML path parsing, point generation, catalog synchronization and identifier normalization, plus network-topology exploration with cable tracing and path finding.</p>
                 <p class="project-extra">Layered solution separating Domain, Application, Infrastructure, Shared, UI and automated tests, with wizard-based engineering workflows and reusable WPF components. Developed alongside my daily work in a real Spectrum Power control center.</p>
+                
+                <div class="gallery" data-gallery>
+                    <button type="button" class="shot shot-spcs-explorer" data-cap="Connectivity Explorer: interactive network topology graph with search, filters and object details"></button>
+                    <button type="button" class="shot shot-spcs-health" data-cap="Connectivity Health: validation dashboard with issue distribution and network health score"></button>
+                    <button type="button" class="shot shot-spcs-tracer" data-cap="Cable Tracer: full verified 13.9 km cable route with path segments and route profile"></button>
+                    <button type="button" class="shot shot-spcs-tracer-gap" data-cap="Cable Tracer: connectivity gap detection on an incomplete route"></button>
+                    <button type="button" class="shot shot-spcs-pathfinder" data-cap="Path Finder: network path between two objects with distance and path objects"></button>
+                    <button type="button" class="shot shot-spcs-review" data-cap="Incremental Import: review changes with impact analysis before applying"></button>
+                    <button type="button" class="shot shot-spcs-bulk" data-cap="Bulk Import: wizard-based upload of network connectivity datasets"></button>
+                </div>
                 <div class="project-foot"><span class="project-note">Internal engineering tool, no public repository</span></div>
             </article>
             <article class="project">
@@ -131,6 +142,12 @@
                 <p class="project-stack">C# · .NET 8 · SQL Server</p>
                 <p class="project-body">A restaurant management platform with ERP-style modules for inventory, sales, purchases and branch management: stock updates, vendor handling and a responsive administration dashboard, with AI predictive models explored for order forecasting and best-selling item analysis.</p>
                 <p class="project-extra">Organized as a layered .NET solution with separate Models, Repository, Services and Web projects.</p>
+                
+                <div class="gallery" data-gallery>
+                    <button type="button" class="shot shot-rest-hero" data-cap="Restoran: animated landing page with hero section and table booking call-to-action"></button>
+                    <button type="button" class="shot shot-rest-menu" data-cap="Restoran: food menu with category tabs and popular items"></button>
+                    <button type="button" class="shot shot-rest-booking" data-cap="Restoran: online table reservation form backed by .NET and Entity Framework"></button>
+                </div>
                 <div class="project-foot"><a class="btn btn-compact" href="https://github.com/AhmedYasee/FoodDelivery" target="_blank" rel="noopener">View on GitHub</a></div>
             </article>
             <article class="project">
@@ -144,6 +161,19 @@
                 <div class="project-foot"><a class="btn btn-compact" href="https://github.com/AhmedYasee/Accounting_System" target="_blank" rel="noopener">View on GitHub</a></div>
             </article>
         </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS (hidden placeholder) ============
+         Hidden until real client reviews are provided. Do NOT add placeholder or sample quotes;
+         only real, attributable client testimonials go here. To enable: fill the list items and
+         remove the hidden attribute. -->
+    <section class="section" id="testimonials" hidden>
+        <header class="section-head">
+            <span class="index">--</span>
+            <h2 class="section-title">Client testimonials</h2>
+            <span class="section-rule" aria-hidden="true"></span>
+        </header>
+        <ul class="testimonial-list"><!-- real client reviews drop in here --></ul>
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
@@ -225,5 +255,6 @@
 
 </main>
 <script src="script.js"></script>
+    <div class="lightbox" id="lightbox" hidden><div class="lightbox-frame"><div class="lightbox-img" id="lightbox-img"></div><p class="lightbox-cap" id="lightbox-cap"></p><button type="button" class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button></div></div>
 </body>
 </html>
