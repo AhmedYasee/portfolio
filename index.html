@@ -92,7 +92,7 @@
 .lang-ar .pfd-timeline,html[lang=ar] .timeline{border-left:0;border-right:1px solid #294354;padding-left:0;padding-right:0;margin-right:7px;margin-left:0;}
 .lang-ar .spcs-laptop,.lang-ar .sbu-device,html[lang=ar] .spcs-laptop,html[lang=ar] .sbu-device{direction:ltr;}
 .lang-ar .spcs-laptop-label,.lang-ar .sbu-device-label,html[lang=ar] .spcs-laptop-label,html[lang=ar] .sbu-device-label{line-height:1.7;}
-.lang-ar .pfd-lightbox-close{left:-10px;right:auto;}.lang-ar .pfd-caret,.lang-ar .caret{display:none;}
+.lang-ar .pfd-lightbox-close{left:-10px;right:auto;}.lang-ar .pfd-caret,.lang-ar .caret{display:inline-block;}
 .lang-ar .pfd-recog{padding-right:20px;padding-left:0;}.lang-ar .pfd-recog li{padding-left:0;padding-right:4px;}
 @media(max-width:480px){.language-bar{padding:14px 22px;}.language-mark{font-size:9px;}.lang-ar .pfd-name{font-size:40px;}.lang-ar .pfd-project-name{line-height:1.5;}}
 
@@ -104,6 +104,8 @@ html[lang=ar] .rest-address{text-align:right;direction:rtl;}
 .language-bar{max-width:1040px;}.language-toggle{min-height:38px;}
 
 .language-bar{position:absolute;top:18px;inset-inline-end:20px;z-index:8;padding:0;margin:0;background:none;max-width:none;width:auto;}.language-mark{display:none;}.language-toggle{background:#101a2c88;backdrop-filter:blur(8px);}.hero{padding-top:76px;}
+
+html[lang=ar] .typing{direction:rtl;}html[lang=ar] .caret{margin-left:0;margin-right:4px;}
 </style></head>
 <body>
 
@@ -118,7 +120,7 @@ html[lang=ar] .rest-address{text-align:right;direction:rtl;}
         <div class="hero-inner">
             <p class="kicker">Software Engineer · Alexandria, Egypt</p>
             <h1 class="name">Ahmed Yaseen</h1>
-            <p class="typing"><span id="typed">I build .NET backends and APIs.</span><span class="caret" aria-hidden="true"></span></p>
+            <p class="typing"><span id="hero-typed">I build .NET backends and APIs.</span><span class="caret" aria-hidden="true"></span></p>
             <p class="pitch">Backend and .NET engineer who also works inside a live electricity control center. I build desktop and web systems in C# and .NET, and I freelance for clients on Upwork, Mostaql and Khamsat.</p>
             <div class="cta">
                 <a class="btn btn-primary" href="mailto:eng.ahmedyaseen4@gmail.com">Email me</a>
@@ -357,7 +359,7 @@ html[lang=ar] .rest-address{text-align:right;direction:rtl;}
  const walker=document.createTreeWalker(document.querySelector('main'),NodeFilter.SHOW_TEXT);
  let node;
  while(node=walker.nextNode()){
-  if(node.parentElement.closest('script,style,#typed')||!node.textContent.trim())continue;
+  if(node.parentElement.closest('script,style,#hero-typed')||!node.textContent.trim())continue;
   const original=node.textContent;const key=original.trim().replace(/\s+/g,' ');
   if(dictionary[key])nodes.push({node,original,key,slot:null});
  }
@@ -379,10 +381,19 @@ html[lang=ar] .rest-address{text-align:right;direction:rtl;}
   attributes.forEach(item=>item.el.setAttribute(item.name,language==='ar'?dictionary[item.value]:item.value));
   button.querySelectorAll('[data-lang]').forEach(el=>el.classList.toggle('selected',el.dataset.lang===language));
   button.setAttribute('aria-label',language==='en'?'Switch to Arabic':'Switch to English');
-  const typed=document.getElementById('typed');if(typed)typed.textContent=language==='ar'?dictionary['I build .NET backends and APIs.']:'I build .NET backends and APIs.';
+  const typed=document.getElementById('hero-typed');if(typed)typed.textContent=language==='ar'?dictionary['I build .NET backends and APIs.']:'I build .NET backends and APIs.';
   try{localStorage.setItem('portfolio-language',language);}catch{}
+  startTyping();
  }
- const typed=document.getElementById('typed');if(typed)new MutationObserver(()=>{if(language==='ar'&&typed.textContent!==dictionary['I build .NET backends and APIs.'])typed.textContent=dictionary['I build .NET backends and APIs.'];}).observe(typed,{childList:true,characterData:true,subtree:true});
+ let typingTimer=0;
+ const heroPhrases={en:['I build .NET backends and APIs.','I engineer SCADA configuration tooling.','I ship Windows desktop apps in WPF.','I turn requirements into working software.'],ar:['أطوّر الأنظمة الخلفية وواجهات API بتقنيات ‎.NET','أطوّر أدوات هندسية لتهيئة أنظمة SCADA.','أبني تطبيقات ويندوز باستخدام WPF.','أحوّل المتطلبات إلى برمجيات تعمل.']};
+ function startTyping(){
+  clearTimeout(typingTimer);const el=document.getElementById('hero-typed');if(!el)return;
+  const phrases=heroPhrases[language];let phrase=0,chars=phrases[0].length,deleting=true;
+  el.textContent=phrases[0];if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  function tick(){if(deleting){chars=Math.max(0,chars-2);if(chars===0){deleting=false;phrase=(phrase+1)%phrases.length;}}else chars=Math.min(phrases[phrase].length,chars+1);el.textContent=phrases[phrase].slice(0,chars);let delay=deleting?28:52;if(!deleting&&chars===phrases[phrase].length){deleting=true;delay=2400;}typingTimer=setTimeout(tick,delay);}
+  typingTimer=setTimeout(tick,2400);
+ }
  button.addEventListener('click',()=>choose(language==='en'?'ar':'en'));
  let saved='en';try{if(localStorage.getItem('portfolio-language')==='ar')saved='ar';}catch{}choose(saved);
 })();
