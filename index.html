@@ -46,6 +46,13 @@
 /* Crop only the captured page gutters, retain the source on tap. */
 .rest-screen{aspect-ratio:916/511;overflow:hidden;background-size:111.8% 100%;}
 .rest-screen img{width:100%;height:100%;object-fit:cover;object-position:center;}
+
+/* Preserve the approved Menu and Reservation screenshots without cropping. */
+.rest-showcase .spcs-laptop-item:not(:first-child) .rest-screen{aspect-ratio:auto;background-size:100% 100%;}
+.rest-showcase .spcs-laptop-item:not(:first-child) .rest-screen img{height:auto;object-fit:contain;}
+
+.rest-showcase .spcs-laptop-item:not(:first-child) .shot-rest-menu{aspect-ratio:1024/511;}
+.rest-showcase .spcs-laptop-item:not(:first-child) .shot-rest-booking{aspect-ratio:1024/513;}
 </style>
 </head>
 <body>
