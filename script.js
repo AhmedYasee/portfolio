@@ -125,3 +125,25 @@
         setTimeout(tick, 2600);
     }
 })();
+
+/* Project gallery lightbox */
+(function () {
+    var lb = document.getElementById('lightbox');
+    if (!lb) return;
+    var img = document.getElementById('lightbox-img');
+    var cap = document.getElementById('lightbox-cap');
+    var closeBtn = document.getElementById('lightbox-close');
+    document.querySelectorAll('[data-gallery] .shot').forEach(function (shot) {
+        shot.addEventListener('click', function () {
+            var cls = Array.from(shot.classList).find(function (c) { return c.indexOf('shot-') === 0 && c !== 'shot'; });
+            img.className = 'lightbox-img ' + cls;
+            cap.textContent = shot.getAttribute('data-cap') || '';
+            lb.hidden = false;
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    function close() { lb.hidden = true; document.body.style.overflow = ''; }
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) close(); });
+})();
