@@ -9,7 +9,7 @@ Plain HTML, CSS and JavaScript. No build step. Fonts from Google Fonts (Fraunces
 - `index.html` — page content
 - `styles.css` — dark theme, glassmorphism, hover effects
 - `script.js` — hero particle constellation and typing effect (both respect `prefers-reduced-motion`)
-- `hero.jpg` — illustrative control-room artwork
+- artwork embedded in `styles.css` as a data URI
 
 ## Hosting
 
